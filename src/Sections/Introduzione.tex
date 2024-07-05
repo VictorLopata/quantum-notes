@@ -1,0 +1,118 @@
+\input{def}
+\section{Nozioni Matematiche}
+\subsection{Strutture algebriche}
+\begin{definition}{Struttura Algebrica}{}
+    Definiamo come \textbf{struttura algebrica} un insieme munito di una o più operazioni. Spesso viene indicato con la notazione $(A, m)$, dove $A$ è l'insieme ed $m$ è l'operazione.
+\end{definition}
+
+\begin{definition}{Principali strutture algebriche}{}
+    Sia $(A,m)$ una struttura algebrica, dove $A$ è l'insieme ed $m$ è un'operazione binaria chiusa sull'insieme. Tale struttura può essere definita come:
+    \begin{itemize}
+        \item \textbf{Semigruppo}: se $m$ è \underline{associativa}.
+        \item \textbf{Monoide}: se $m$ è \underline{associativa} e munita dell'\underline{elemento neutro}.
+        \item \textbf{Gruppo}: se $m$ è \underline{associativa}, munita dell'\underline{elemento neutro} e dell'\underline{elemento inverso}.
+        \item \textbf{Gruppo abeliano}: se $m$ è \underline{associativa}, munita dell'\underline{elemento neutro} e dell'\underline{inverso} ed è \underline{commutativa}.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{Anello}{}
+    Sia $(A,+,\cdot)$ una struttura algebrica. Possiamo definirla come \textbf{anello} se:
+    \begin{itemize}
+        \item $(A,+)$ è un \textbf{gruppo abeliano}.
+        \item $(A,\cdot)$ è un \textbf{semigruppo}.
+        \item La moltiplicazione è distributiva rispetto alla somma:
+        \begin{equation}
+            \begin{split}
+                a \cdot (b + c) = (a \cdot b) + (a \cdot c) \\
+                (a + b) \cdot c= (a \cdot c) + (b \cdot c)   
+            \end{split}
+        \end{equation}
+    \end{itemize}
+    Possiamo definirlo anche come \textbf{anello commutativo} se $(A,\cdot)$ è munita della commutatività.
+\end{definition}
+\begin{fact}{}{}
+    Sia $(A,+,\cdot)$ un anello. Allora:
+    \begin{equation}
+        \forall x,y\in A \quad (xy)^{-1} = y^{-1}x^{-1}
+    \end{equation}
+\end{fact}
+\begin{definition}{Campo}{}
+    Sia $(K,+,\cdot)$ una struttura algebrica. Possiamo deifinirla come \textbf{campo} se:
+    \begin{itemize}
+        \item $(K,+,\cdot)$ è un \textbf{anello commutativo}.
+        \item $(K \backslash 0,\cdot)$ è un \textbf{gruppo abeliano}.
+    \end{itemize}
+\end{definition}
+
+\subsection{Numeri complessi}
+\subsection{Spazi Vettoriali}
+\begin{definition}{Norma Euclidiana}{}
+    Sia $v$ un vettore avente numeri complessi come entrate:
+    \begin{equation}
+        v = \left(
+        \begin{array}{c}
+             \alpha_1  \\
+             \vdots \\
+            \alpha_n   
+        \end{array}\right)
+    \end{equation}
+    Definiamo la sua \textbf{norma Euclidiana} come:
+    \begin{equation}
+        \Vert v \Vert = \sqrt{\sum_{k=1}^{n} |{\alpha_k}^2|}
+    \end{equation}
+\end{definition}
+\subsection{Matrici}
+\begin{definition}{Trasposta di una matrice}{}
+    Sia $A$ una matrice. Definiamo come \textbf{matrice trasposta} di $A$, rappresentata dal simbolo $A^{\mathrm{T}}$, come la matrice avente il cui generico elemento con indici $(i,j)$ è l'elemento con indice $(j,i)$ della matrice originaria.
+    In altre parole, la matrice trasposta di una matrice è la matrice ottenuta scambiandone le righe con le colonne.
+\end{definition}
+\begin{example}{}{}
+\begin{itemize}
+    \item $A = \left(\begin{array}{ccc}
+        2 & 1 & 4 \\
+        0 & 0 & 3
+    \end{array}\right) \quad A^{\mathrm{T}} = \left(\begin{array}       {cc}
+        2 & 0 \\
+        1 & 0 \\
+        4 & 3
+    \end{array}\right)$
+    \item $A = \left(\begin{array}{ccccc}
+        1 & 2 & 3 & 4 & 5 \\
+        6 & 7 & 8 & 9 & 10 \\
+        11 & 12 & 13 & 14 & 15 \\
+        16 & 17 & 18 & 19 & 20 
+    \end{array}\right) \quad A^{\mathrm{T}} = \left(\begin{array}       {cccc}
+        1 & 6 & 11 &  16 \\
+        2 & 7 & 12 & 17 \\
+        3 & 8 & 13 & 18 \\
+        4 & 9 & 14 & 19 \\ 
+        5 & 10 & 15 & 20 
+    \end{array}\right)$
+\end{itemize}
+\end{example}
+\begin{definition}{Matrice Trasposta Coniugata}{}
+    Sia $A$ una matrice avente come entrate valori complessi. Deifiniamo la sua \textbf{matrice trasposta coniugata}, rappresentata dal simbolo $A^{\dagger}$, come la matrice ottenuta effettuando la trasposta e scambiando ogni valore con il suo comlesso coniugato.
+\end{definition}
+\begin{example}{}{}
+    $A = \left(\begin{array}{cc}
+        3+9i & 2+i \\
+        7-6i & 1-3i
+    \end{array}\right) \quad A^{\dagger} = \left(\begin{array}       {cc}
+        3-9i & 7+6i \\
+        2-i & 1+3i \\
+    \end{array}\right)$
+\end{example}
+\begin{definition}{Matrici Unitarie}{}\label{matUnit}
+    Sia $U$ una matrice quadrata complessa. Definiamo $U$ come una \textbf{matrice unitaria} se:
+    \begin{equation*}
+        U^{\dagger}U = \mathbb{1} = UU^{\dagger}
+    \end{equation*}
+    dove $U^{\dagger}$ è la matrice trasposta coniugata di $U$ e $\mathbb{1}$ è la matrice identità.
+\end{definition}
+\begin{fact}{}{}
+    Sia $U$ una matrice unitaria. Allora abbiamo che:
+    \begin{equation*}
+        \Vert Uv \Vert = \Vert v \Vert
+    \end{equation*}
+\end{fact}
+\subsection{Notazione Dirac}

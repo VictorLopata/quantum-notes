@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{appendix}
+\usepackage{multicol}
+\usepackage{leftidx}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{bbold}
+\usepackage{subfiles}
+\usepackage{mathtools}
+\usepackage{units}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{commath}
+\usepackage{tcolorbox, varwidth} % Boxes
+\usepackage{amsthm} % For the proof environment
+
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+\tcbuselibrary{skins}
+
+% Colours
+\definecolor{TheoremColor}{RGB}{0,0,0} % Green
+\definecolor{DefColor}{RGB}{45, 52, 2} % Blue
+\definecolor{CorollaryColor}{RGB}{158, 80, 143} % Purple
+\definecolor{ExampleColor}{RGB}{226,135,67} % Orange
+\definecolor{ProofColor}{RGB}{0,177,160} % Aqua
+\definecolor{FactColor}{RGB}{124,23,12} % Aqua
+
+
+\title{Appunti sulla Computazione Quantistica}
+\author{Victor Lopata}
+\date{July 2024}
+
+
+
+\newpage
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+	\include{Sections/Introduzione}
+    \include{Sections/ClassicalInformation}
+    \include{Sections/QuantumInformation}
+		
+\end{document}

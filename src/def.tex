@@ -1,0 +1,59 @@
+% Theorem
+\newtcbtheorem[number within = section]{theorem}{Theorem}%
+{enhanced,frame empty,interior empty,colframe=TheoremColor!50!white,
+	coltitle=TheoremColor!50!black,fonttitle=\bfseries,colbacktitle=TheoremColor!15!white,
+	borderline={0.5mm}{0mm}{TheoremColor!15!white},
+	borderline={0.5mm}{0mm}{TheoremColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{theo}
+
+% Definition
+\newtcbtheorem[number within = section]{definition}{Definition}%
+{enhanced,frame empty,interior empty,colframe=DefColor!50!white,
+	coltitle=DefColor!50!black,fonttitle=\bfseries,colbacktitle=DefColor!15!white,
+	borderline={0.5mm}{0mm}{DefColor!15!white},
+	borderline={0.5mm}{0mm}{DefColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{defo}
+
+% Corollary
+\newtcbtheorem[number within = section]{corollary}{Corollary}%
+{enhanced,frame empty,interior empty,colframe=CorollaryColor!50!white,
+	coltitle=CorollaryColor!50!black,fonttitle=\bfseries,colbacktitle=CorollaryColor!15!white,
+	borderline={0.5mm}{0mm}{CorollaryColor!15!white},
+	borderline={0.5mm}{0mm}{CorollaryColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{defo}
+ 
+% Osservazione
+\newtcbtheorem[number within = section]{oss}{Observation}%
+{enhanced,frame empty,interior empty,colframe=CorollaryColor!50!white,
+	coltitle=CorollaryColor!50!black,fonttitle=\bfseries,colbacktitle=CorollaryColor!15!white,
+	borderline={0.5mm}{0mm}{CorollaryColor!15!white},
+	borderline={0.5mm}{0mm}{CorollaryColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{defo}
+ 
+% Example
+\newtcbtheorem[number within = section]{example}{Example}%
+{enhanced,frame empty,interior empty,colframe=ExampleColor!50!white,
+	coltitle=ExampleColor!50!black,fonttitle=\bfseries,colbacktitle=ExampleColor!15!white,
+	borderline={0.5mm}{0mm}{ExampleColor!15!white},
+	borderline={0.5mm}{0mm}{ExampleColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{defo}
+
+% Proof
+\tcolorboxenvironment{proof}{% `proof' from `amsthm'
+	blanker,breakable,left=5mm,
+	before skip=10pt,after skip=10pt,
+	borderline west={1mm}{0pt}{ProofColor!50!white}}
+
+% Fact
+\newtcbtheorem[number within = section]{fact}{Fact}%
+{enhanced,frame empty,interior empty,colframe=ExampleColor!50!white,
+	coltitle=ExampleColor!50!black,fonttitle=\bfseries,colbacktitle=ExampleColor!15!white,
+	borderline={0.5mm}{0mm}{FactColor!15!white},
+	borderline={0.5mm}{0mm}{FactColor!50!white},
+	attach boxed title to top left={yshift=-2mm, xshift=3mm},
+	boxed title style={boxrule=0.4pt},varwidth boxed title}{facto}

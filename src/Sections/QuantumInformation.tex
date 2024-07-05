@@ -1,0 +1,473 @@
+\section{Informazione Quantistica}
+\subsection{Sistemi Singoli}
+\begin{definition}{Stato Quantistico}{}
+    Definiamo come \textbf{stato quantistico} un \textbf{vettore colonna} tale che:
+    \begin{itemize}
+        \item Le entrate sono \textbf{numeri complessi}
+        \item La somma dei valori assoluti elevati alla seconda deve essere uguale ad $1$.
+    \end{itemize}
+\end{definition}
+Le entrate dei vettori colonna, rappresentate dai numeri complessi, sono chiamati anche \textbf{ampiezza}.
+\begin{definition}{Stato Quantistico (definizione alternativa)}{}
+    Possiamo definire uno stato quantistico anche come un vettore colonna $v$ che ha come entrate numeri complessi tale che $\Vert v \Vert = 1$.
+\end{definition}
+
+\begin{example}{Stati Quantistici}{}
+\begin{itemize}
+    \item $|0\rangle$
+    \item $|1\rangle$
+    \item $|+\rangle = \frac{1}{\sqrt{2}}|0\rangle +  \frac{1}{\sqrt{2}}|1\rangle$
+    \item $|-\rangle = \frac{1}{\sqrt{2}}|0\rangle -  \frac{1}{\sqrt{2}}|1\rangle$
+\end{itemize}
+\end{example}
+Stati quantistici che non hanno una particolare denominazione vengono indicate con le lettere $\psi$ o $\phi$. Ad esempio
+\begin{equation*}
+    |\psi\rangle = \frac{1 + 2i}{3}|0\rangle -  \frac{2}{3}|1\rangle
+\end{equation*}
+\subsubsection{Misurazione di stati quantistici}
+\subsubsection{Operazioni Unitarie}
+Le operazioni che si possono applicare sugli stati quantistici sono rappresentate dalle \textbf{matrici unitarie} (Definizione \ref{matUnit}).
+\begin{oss}{}{}
+    Se $v$ è uno stato quantistico, allora anche $Uv$ è uno stato quantistico.
+\end{oss}
+Vediamo alcune delle più famose ed importanti operazione unitarie su un singolo Qubit:
+\begin{itemize}
+    \item \textbf{Pauli Operations}:
+    \begin{equation*}
+        \mathbb{1} = \left(\begin{array}{cc}
+            1 & 0 \\
+            0 & 1
+        \end{array}\right)
+        \quad
+        \sigma_x = \left(\begin{array}{cc}
+            0 & 1 \\
+            1 & 0
+        \end{array}\right)
+        \quad
+        \sigma_y = \left(\begin{array}{cc}
+            0 & -i \\
+            i & 0
+        \end{array}\right)
+        \quad
+        \sigma_z = \left(\begin{array}{cc}
+            1 & 0 \\
+            0 & -1
+        \end{array}\right)
+    \end{equation*}
+    \item \textbf{Hadamard Operation}:
+    \begin{equation*}
+        H = \left(\begin{array}{cc}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{array}\right)
+    \end{equation*}
+    \item \textbf{Phase Operations}:
+    \begin{equation*}
+        P_{\Theta} = \left(\begin{array}{cc}
+            1 & 0 \\
+            0 & e^{i\Theta}
+        \end{array}\right)
+        \quad
+        S = P_{\frac{\pi}{2}} =\left(\begin{array}{cc}
+            1 & 0 \\
+            0 & i
+        \end{array}\right)
+        \quad
+        T = P_{\frac{\pi}{4}} =\left(\begin{array}{cc}
+            1 & 0 \\
+            0 & \frac{1+i}{\sqrt{2}}
+        \end{array}\right)
+    \end{equation*}
+\end{itemize}
+
+Vediamo ora degli esempi sull'applicazione di queste operazioni sugli stati quantistici.
+\begin{enumerate}
+    \item 
+    $
+        H|0\rangle = \left(\begin{array}{cc}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         1  \\
+         0
+    \end{array}\right) = \left(\begin{array}{c}
+         \frac{1}{\sqrt{2}}  \\
+         \frac{1}{\sqrt{2}}
+    \end{array}\right) = \frac{1}{\sqrt{2}}|0\rangle +  \frac{1}{\sqrt{2}}|1\rangle =|+\rangle
+    $
+    \item
+    $
+        H|1\rangle = \left(\begin{array}{cc}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         0  \\
+         1
+    \end{array}\right) = \left(\begin{array}{c}
+         \frac{1}{\sqrt{2}}  \\
+         -\frac{1}{\sqrt{2}}
+    \end{array}\right) = \frac{1}{\sqrt{2}}|0\rangle -  \frac{1}{\sqrt{2}}|1\rangle =|-\rangle
+    $
+    \item 
+    $
+        H|+\rangle = \left(\begin{array}{cc}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         \frac{1}{\sqrt{2}}  \\
+         \frac{1}{\sqrt{2}}
+    \end{array}\right) = \left(\begin{array}{c}
+         1  \\
+         0
+    \end{array}\right) =|0\rangle
+    $
+    \item 
+    $
+        H|-\rangle = \left(\begin{array}{cc}
+            \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+            \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         \frac{1}{\sqrt{2}}  \\
+         -\frac{1}{\sqrt{2}}
+    \end{array}\right) = \left(\begin{array}{c}
+         0  \\
+         1
+    \end{array}\right) =|1\rangle
+    $
+    \item
+    $
+    T |0\rangle = \left(\begin{array}{cc}
+            1 & 0 \\
+            0 & \frac{1+i}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         1  \\
+         0
+    \end{array}\right) = |0\rangle
+    $
+    \item 
+    $
+    T |1\rangle = \left(\begin{array}{cc}
+            1 & 0 \\
+            0 & \frac{1+i}{\sqrt{2}}
+        \end{array}\right) \left(\begin{array}{c}
+         0  \\
+         1
+    \end{array}\right) = \left(\begin{array}{c}
+         0  \\
+         \frac{1+i}{\sqrt{2}}
+    \end{array}\right) = \frac{1+i}{\sqrt{2}}|1\rangle
+    $
+    \item 
+    $
+    T |+\rangle = T \left(\frac{1}{\sqrt{2}}|0\rangle +  \frac{1}{\sqrt{2}}|1\rangle\right) = \frac{1}{\sqrt{2}}T|0\rangle +  \frac{1}{\sqrt{2}}T|1\rangle = \frac{1}{\sqrt{2}}|0\rangle +  \frac{1+i}{2}|1\rangle
+    $
+    \item 
+    $
+    HSH = \left(\begin{array}{cc}
+            \frac{1+i}{2} & \frac{1-i}{2} \\
+            \frac{1-i}{2} & \frac{1+i}{2}
+        \end{array}\right)
+    $
+    \item
+    $
+    (HSH)^2 = \left(\begin{array}{cc}
+            \frac{1+i}{2} & \frac{1-i}{2} \\
+            \frac{1-i}{2} & \frac{1+i}{2}
+        \end{array}\right)^2 = \left(\begin{array}{cc}
+            0 & 1 \\
+           1 & 0
+        \end{array}\right)
+    $
+    
+\end{enumerate}
+\subsection{Sistemi Multipli}
+I sistemi multipli possono esser visti come singoli sistemi composti tra di loro.
+\begin{definition}{Stati quantistici nei Sistemi Multipli}{}
+Gli stati quantisitic nei sistemi multipli sono rappresentati sempre dai vettori colonna, le quali entrate hanno numeri complessi (come negli stati quantistici dei sistemi singoli) e gli indici dei vettori sono posizionati in corrispondenza del prodotto cartesiano tra gli insiemi degli stati di ciascun sistema.
+
+Sia quindi $v$ tale vettore, deve soddisfare sempre:
+\begin{equation*}
+    \Vert v \Vert = 1
+\end{equation*}
+\end{definition}
+\begin{example}{}{}
+    Ad esempio, siano $X$ ed $Y$ sistemi che rappresentano qubits e vogliamo rappresentare il sistema multiplo $(X,Y)$. Allora il suo insieme degli stati classici è definito dal prodotto cartesiano:
+    \begin{equation*}
+        \{0,1\} \times \{0,1\} = \{00,01,10,11\}
+    \end{equation*}
+    Quindi un esempio di stato quantistico per il sistema multiplo $(X,Y)$ può essere:
+    \begin{equation*}
+        \frac{1}{\sqrt{2}}|00\rangle - \frac{1}{\sqrt{6}}|01\rangle + \frac{i}{\sqrt{6}}|10\rangle + \frac{1}{\sqrt{6}}|11\rangle
+    \end{equation*}
+\end{example}
+Esistono molti modi su come rappresentare i vettori degli stati quantistici di sistemi multipli. Ecco alcuni di uso comune:
+ \begin{equation*}
+    \begin{array}{l}
+        |0\rangle |1\rangle \\ \\
+        |0\rangle \otimes|1\rangle \\ \\
+        |0\rangle_X|1\rangle_Y
+    \end{array}
+\end{equation*}
+Oppure possiamo, ovviamente, scriverlo esplicitamente:
+\begin{equation*}
+    \left(\begin{array}{c}
+         \frac{1}{\sqrt{2}}  \\ \\
+         - \frac{1}{\sqrt{6}} \\ \\
+         \frac{i}{\sqrt{6}} \\ \\
+         \frac{1}{\sqrt{6}}
+    \end{array}\right)
+\end{equation*}
+\subsubsection{Prodotto Tensoriale di vettori di stati quantistici}
+Come per i vettori probabilistici, il prodotto tensoriale tra due vettori di stati quantistici produce un nuovo vettore di stato quantistico.
+\begin{theorem}{Chiusura prodotto tensoriale}{}
+    Siano $|\phi\rangle$ e $|\psi\rangle$ due stati quantistici rispettivamente di $X$ e di $Y$. Il prodotto tensoriale tra i due stati quantistici produce uno stato quantistico.
+\end{theorem}
+\begin{proof}
+\begin{equation*}
+\large
+\begin{array}{l}
+
+    \Vert \|\phi\rangle \otimes |\psi\rangle \Vert = \sqrt{\sum_{(a,b) \in \Sigma \times \Gamma} |\langle ab|\phi \otimes \psi \rangle|^2} = \\ \\
+    = \sqrt{\sum_{a \in \Sigma} \sum_{b \in \Gamma} |\langle a|\phi\rangle \langle b | \psi \rangle|^2} = \\ \\
+    = \sqrt{\sum_{a \in \Sigma} |\langle a|\phi\rangle|^2 \sum_{b \in \Gamma} \langle b | \psi \rangle|^2} = \\ \\
+    = \Vert |\phi\rangle \Vert \Vert |\psi\rangle \Vert
+    
+\end{array}
+\end{equation*}
+Sappiamo che $\Vert \phi \rangle \Vert = 1$ e $\Vert \psi \rangle \Vert = 1$. Di conseguenza $\Vert |\phi\rangle \Vert \Vert |\psi\rangle \Vert = 1$, dimostrando che $|\phi\rangle \otimes |\psi\rangle$ è uno vettore di uno stato quantistico.
+\end{proof}
+Tale teorema viene generalizzato in per \textbf{più di due sistemi}; siano $|\phi_1\rangle, \hdots, |\phi_n\rangle$ vettori di stati quantistici dei sistemi $X_1, \hdots, X_n$. Allora il prodotto tensoriale $|\phi_1\rangle \otimes \hdots \otimes |\phi_n\rangle$ produce un vettore di uno stato quantistico del sistema $(X_1, \hdots, X_n)$. È facilmente dimostrabile considerando la dimostrazione del precedente teorema.
+
+Sia $|\phi\rangle$ uno stato quantistico del sistema $X$ e sia $|\psi\rangle$ uno stato quanistico del sistema $Y$; allora, il vettore $|\phi\rangle \otimes |\psi\rangle$ rappresenta uno stato quantistico per il sistema multiplo $(X,Y)$. Ricordiamo che il prodotto tensoriale rappresenta \textbf{l'indipendenza} tra i due sistemi, di conseguenza gli stati dei due sistemi non hanno niente a che vedere l'uno con l'altro.
+\subsubsection{Sistemi Entangled}
+Esistono vettori di sistemi quantistici che non sono il prodotto tensoriale tra due vettori di sistemi quantistici. Prendiamo come esempio il seguente stato quantistico:
+\begin{equation}\label{eq}
+    \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle
+\end{equation}
+Non esistono stati tali che il loro prodotto tensoriale sia equivalente allo stato di sopra.
+\begin{proof}
+    Siano, per assurdo, $|\phi\rangle$ e $|\psi\rangle$ i due stati tali che:
+    \begin{equation*}
+        \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle = |\phi\rangle \otimes |\psi\rangle
+    \end{equation*}
+    Deve essere necessariamente
+    \begin{equation*}
+        \langle 0 | \phi \rangle \langle 1 | \phi \rangle  = \langle 01 | \phi \otimes \psi \rangle 
+    \end{equation*}
+    implicando che:
+    \begin{equation*}
+        \langle 0 | \phi \rangle = 0 \vee \langle 1 | \phi \rangle = 0
+    \end{equation*}
+    ma questo porta ad una contraddizione; infatti
+    \begin{equation*}
+        \langle 0 | \phi \rangle \langle 0 | \psi \rangle = \langle 00 | \phi \otimes \psi \rangle = \frac{1}{\sqrt{2}} \wedge \langle 1 | \phi \rangle \langle 1 | \psi \rangle = \langle 11 | \phi \otimes \psi \rangle = \frac{1}{\sqrt{2}}
+    \end{equation*}
+    nessuna delle due equazioni produce $0$.   
+\end{proof}
+Lo stato rappresentato dal vettore dell'equazione \ref{eq}, rappresenta una \textbf{correllazione} tra i due sistemi. Diciamo che questi sono \textbf{entangled (impigliati)}.
+\subsubsection{Bell States}
+\begin{definition}{Stati di Bell}{}
+    Definiamo gli \textbf{stati di Bell} i seguenti stati quantistici:
+    \begin{enumerate}
+        \item $|\phi^+\rangle = \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$
+        \item $|\phi^-\rangle = \frac{1}{\sqrt{2}}|00\rangle - \frac{1}{\sqrt{2}}|11\rangle$
+        \item $|\psi^+\rangle = \frac{1}{\sqrt{2}}|01\rangle + \frac{1}{\sqrt{2}}|10\rangle$
+        \item $|\phi^-\rangle = \frac{1}{\sqrt{2}}|01\rangle - \frac{1}{\sqrt{2}}|10\rangle$
+    \end{enumerate}
+\end{definition}
+La collezione dei quattro stati $\{|\phi^+\rangle, |\phi^-\rangle, |\psi^+\rangle, |\psi^-\rangle \}$ forma la \textbf{base di Bell}: qualsiasi vettore di uno stato quantistico a due qubit può essere espresso come una combinazione lineare dei quattro stati di Bell.
+\subsubsection{Stati GHZ e W}
+Vediamo ora alcuni stati quantistici importanti di 3 quibt:
+\begin{itemize}
+    \item \textbf{Stato GHZ}:
+    \begin{equation}
+        \frac{1}{\sqrt{2}}|000\rangle +  \frac{1}{\sqrt{2}}|111\rangle 
+    \end{equation}
+    \item \textbf{Stato Z}:
+    \begin{equation}
+        \frac{1}{\sqrt{3}}|001\rangle +  \frac{1}{\sqrt{3}}|010\rangle  +  \frac{1}{\sqrt{3}}|100\rangle  
+    \end{equation}
+\end{itemize}
+Nessuno di questi due stati possono essere prodotti da stati quantistici attraverso il prodotto tensore.
+\subsubsection{Misurazione}
+Sia $(X_1, \hdots, X_n)$ un sistema multiplo avente come insieme degli stati $\Sigma = \Sigma_1 \times \hdots \times \Sigma_n$. Sia il sistema nello stato $|\phi \rangle$; allora, la probabilità di ottenere lo stato generico $(a_1, \hdots, a_n) \in \Sigma$ dopo la misurazione è data dalla formula:
+\begin{equation}
+    |\langle a_1, \hdots, a_n | \psi \rangle|^2
+\end{equation}
+Vogliamo ora \textbf{misurare parzialmente} il sistema, quindi ottenere il nuovo stato quantistico dopo una misurazione parziale del sistema. Iniziamo a vedere come funziona per due sistemi, per poi generalizzare a più sistemi.
+
+Sia quindi $X$ e $Y$ due sistemi aventi rispettivamente $\Sigma$ e $\Gamma$ come insieme degli stati classici. Supponiamo che stia in uno stato generico $|\psi\rangle$. Rappresentiamolo con la Dirac-notation:
+\begin{equation*}
+    |\psi\rangle = \sum_{(a,b) \in \Sigma \times \Gamma} \alpha_{ab}|ab\rangle
+\end{equation*}
+Supponiamo di voler misurare solo il sistema $X$, allora la probabilità che $X$ sia in uno stato $a \in \Sigma$ è uguale ad:
+\begin{equation*}
+    \sum_{b \in \Gamma} |\langle ab|\psi\rangle|^2 = \sum_{b \in \Gamma} |\alpha_{ab}|^2
+\end{equation*}
+Dopo la misurazione di $X$, il suo stato cambia in $|a\rangle$. Cosa succede allo stato di $Y$? Per rispondere a questa domanda bisogna descrivere il nuovo stato di $(X,Y)$ sotto l'assunzione che $X$ è stata misurata ottenendo lo stato $a$.
+
+Come primo passo, rappresentiamo lo stato $|\psi\rangle$ in questa maniera:
+\begin{equation*}
+    |\psi \rangle = \sum_{a \in \Sigma} |a\rangle \otimes |\phi_a\rangle
+\end{equation*}
+dove
+\begin{equation*}
+    |\phi_a\rangle = \sum_{b \in \Gamma} \alpha_{ab} |b\rangle
+\end{equation*}
+Possiamo osservare che:
+\begin{equation*}
+    \sum_{b \in \Gamma} |\alpha|^2 ={ \Vert |\phi\rangle \Vert }^2
+\end{equation*}
+Abbiamo quindi che, il nuovo stato del sistema $(X,Y)$ dopo la misurazione di X (con risultato a), è pari a
+\begin{equation*}
+    |a\rangle \otimes \frac{|\phi\rangle}{\Vert |\phi\rangle \Vert }
+\end{equation*}
+$|a\rangle \otimes |\phi\rangle$ rappresenta la parte di $|\psi\rangle$ consistente con la misurazione di $X$. Andiamo poi a \textit{normalizzare} il vettore, dividendo per la sua norma Euclidiana , corrispondente a $|\phi\rangle$; quest'ultimo passaggio serve per portare lo stato ad avere la norma Euclidiana valida per gli stati quantistici, ovvero uguale ad $1$.
+\begin{example}{}{}
+    Consideriamo lo stato di due qubit $(X,Y)$ 
+    \begin{equation*}
+        |\psi\rangle = \frac{1}{\sqrt{2}}|00\rangle - \frac{1}{\sqrt{6}}|01\rangle + \frac{i}{\sqrt{6}}|10\rangle + \frac{1}{\sqrt{6}}|11\rangle
+    \end{equation*}
+    Inizialmente scriviamo lo stato nella seguente forma:
+    \begin{equation*}
+        |\psi\rangle = |0\rangle \otimes \left(\frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{6}}|1\rangle\right) + |1\rangle \otimes \left(\frac{i}{\sqrt{6}}|0\rangle + \frac{1}{\sqrt{6}}|1\rangle\right)
+    \end{equation*}
+    La probabilità che, dopo la misurazione, $X$ stia nello stato $0$ è pari a
+    \begin{equation*}
+        {\Vert \frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{6}}|1\rangle \Vert}^2 = \frac{1}{2} + \frac{1}{6} = \frac{2}{3}
+    \end{equation*}
+    implicando che lo stato di $(X,Y)$ diventa:
+    \begin{equation*}
+        |0\rangle \otimes \frac{\frac{1}{\sqrt{2}}|0\rangle - \frac{1}{\sqrt{6}}|1\rangle}{\sqrt{\frac{2}{3}}} = |0\rangle \otimes \left(\sqrt{\frac{3}{4}}|0\rangle - \frac{1}{2}|1\rangle\right)
+    \end{equation*}
+    I passaggi sono identici nel caso in cui la misurazione di $X$ sia $1$.
+
+    Vediamo ora cosa succede allo stato se misuriamo $Y$. Iniziamo rappresentando (analogamente) lo stato $|\psi\rangle$ nel modo che ci fa più comodo:
+    \begin{equation*}
+        |\psi\rangle = \left( \frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{6}}|1\rangle \right) \otimes |0\rangle + \left(  - \frac{1}{\sqrt{6}}|0\rangle + \frac{1}{\sqrt{6}}|1\rangle \right) \otimes |1\rangle
+    \end{equation*}
+    Ipotizziamo quindi che, dopo la misurazione, $Y$ stia nello stato di $0$; la sua probabilità è pari a:
+    \begin{equation*}
+        {\Vert - \frac{1}{\sqrt{6}}|0\rangle + \frac{1}{\sqrt{6}}|1\rangle \Vert}^2 = \frac{1}{6} + \frac{1}{6} = \frac{1}{3}
+    \end{equation*}
+    Allora il nuovo stato di $(X,Y)$ diventa:
+    \begin{equation*}
+         \frac{-\frac{1}{\sqrt{6}}|0\rangle + \frac{1}{\sqrt{6}}|1\rangle}{\sqrt{\frac{1}{3}}} \otimes |1\rangle  =   \left( - \frac{1}{\sqrt{2}} |0\rangle + \frac{1}{\sqrt{2}} |1\rangle  \right) \otimes |1\rangle
+    \end{equation*}
+\end{example}
+Tali passaggi possono essere effettuati per $n$ sistemi congiunti: il passaggio chiave è ordinare e rappresentare lo stato $|\psi\rangle$ nel modo che ci fa più comodo.
+\subsubsection{Operazioni Unitarie}
+Come per lo stato singolo, usiamo le \textbf{matrici unitarie} per rappresentare operazioni quantistiche su sistemi composti. Gli indici dellerighe e delle colonne di tale matrice sono posizionati in corrispondenza del prodotto cartesiano tra gli insiemi degli stati di ciascun sistema.
+\begin{example}{}{}
+    Siano $X$ e $Y$ due sistemi aventi rispettivamente $\Sigma = \{1,2,3\}$ e $\Gamma = \{0,1\}$ come insieme degli stati. L'insieme dello stato multiplo $(X,Y)$ corrisponde a $\Sigma \times \Gamma = \{(1,0), (1,1), (2,0), (2,1), (3,0),(3,1)\}$. Ecco un esempio di una matrice unitaria rappresentante un'operazione sul sistema $(X,Y)$:
+    \begin{equation*}
+        U = \left(\begin{array}{cccccc}
+            \frac{1}{2} & \frac{1}{2} & 0 & \frac{1}{2} & 0 & \frac{1}{2}  \\ \\
+            \frac{1}{2} & \frac{i}{2} & -\frac{1}{2} & 0 & 0 & -\frac{i}{2}  \\ \\
+            \frac{1}{2} & -\frac{1}{2} & \frac{1}{2} & 0 & 0 & -\frac{1}{2}  \\ \\
+            0 & 0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0  \\ \\
+            \frac{1}{2} & -\frac{i}{2} & -\frac{1}{2} & 0 & 0 & \frac{i}{2}  \\ \\
+           0 & 0 & 0 & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0   
+        \end{array}\right)
+    \end{equation*}
+    Per dimostrare che sia \textbf{unitaria} basta verificare che $U^{\dagger}U = \mathbb{1} = UU^{\dagger}$.
+
+    Applichiamo tale operazione allo stato $|11\rangle$:
+    \begin{equation*}
+        U|11\rangle = \frac{1}{2}|10\rangle + \frac{i}{2}|11\rangle - \frac{1}{2}|20\rangle - \frac{i}{2}|30\rangle
+    \end{equation*}
+    Notiamo che le ampiezze di $U|11\rangle$ corrispondono alla seconda colonna della matrice unitaria.
+\end{example}
+Immaginiamo ora di avere le operazioni $U_1, \hdots, U_n$ applicabili rispettivamente sui sistemi $X_1, \hdots, X_n$. Se le operazioni vengono operate \textbf{indipendentemente} sui sistemi, allora l'operazione combinata sul sistema $(X_1, \hdots, X_n)$ è rappresentata dalla matrice unitaria $U_1 \otimes \hdots \otimes U_n$.
+
+Una situazione comune è l'applicare operazioni solo su un sottoinsieme dei sistemi multipli. Ad esempio, sia $(X,Y)$ un sistema e vogliamo applicare l'operazione $U_Y$ sul sistema $X$; questo implica la non applicazione di alcuna operazione su $Y$, ovvero applicare la funzione identità su di esso. Ricapitolando, applicare un'operazione su $X$ e non fare niente su $Y$ equivale applicare l'operazione rappresentata dalla matrice unitaria $U_X \otimes \mathbb{1}_Y$. Lo stesso procedimento può essere applicato se non si vuole fare niente sul sistema $X$ ed applicare $U_Y$ ad $Y$: $\mathbb{1}_X \otimes U_Y$.
+
+\begin{oss}{}{}
+Non tutte le matrici unitarie possono essere espresse come prodotto tensoriale di matrici unitarie; questo fatto dipende dalla \textbf{dipendenza} che i sistemi hanno.
+\end{oss}
+Vediamo qualche esempio di operazioni comuni che non possono esser rappresentate dal prodotto tensoirale di altre operazioni.
+\begin{itemize}
+    \item \textbf{Operazione SWAP}:
+    Siano $X$ ed $Y$ due sistemi che condividono lo stesso insieme di stati $\Sigma$. L'operazione di \textbf{SWAP} sul sistema $(X,Y)$ è l'operazione che scambia le informazioni tra i due sistemi. Tale operazione è rappresentata dalla seguente matrice unitaria:
+    \begin{equation*}
+        \textbf{SWAP} = \left(\begin{array}{cccc}
+            1 & 0 & 0 & 0  \\
+            0 & 0 & 1 & 0  \\
+            0 & 1 & 0 & 0  \\
+            0 & 0 & 0 & 1  \\
+        \end{array}\right)
+    \end{equation*}
+    Sia, ad esempio, $\Sigma = \{0,1\}$. Allora:
+    \begin{equation*}
+        \textbf{SWAP}|01\rangle = |10\rangle
+    \end{equation*}
+    Più in generale, tale operazione soddisfa:
+    \begin{equation*}
+        \textbf{SWAP}|a\rangle|b\rangle\ = |b\rangle|a\rangle \qquad \forall a,b \in \Sigma
+    \end{equation*}
+    Vediamo come si comporta con gli stati di Bell:
+    \begin{equation*}
+        \begin{array}{l}
+             \textbf{SWAP}|\phi^+\rangle = |\phi^+\rangle \\ \\
+             \textbf{SWAP}|\phi^-\rangle = |\phi^-\rangle \\ \\
+             \textbf{SWAP}|\psi^+\rangle = |\psi^+\rangle \\ \\
+             \textbf{SWAP}|\psi^-\rangle = -|\psi^-\rangle 
+        \end{array}
+    \end{equation*}
+    \item \textbf{Operazione Controlled-\textit{U}}
+    Sia $Q$ un sistema rappresentante un qubit ed $R$ un qualsiasi altro sistema arbitrario. Sia $U$ un'operazione applicabile su $R$. Definiamo l'operazione \textbf{Controlled-\textit{U}}, applicabile sul sistema multiplo $(Q,R)$, come segue:
+    \begin{equation*}
+        CU = |0\rangle\langle0| \otimes \mathbb{1}_R + |1\rangle\langle1| \otimes U
+    \end{equation*}
+    In parole semplici, se $X = 0$ applica $\mathbb{1}$ ad $R$. Altrimenti, se $X = 1$, applica $U$ ad $R$.
+
+Ad esempio, il \textbf{Controlled-NOT} è rappresentabile come:
+\begin{equation*}
+    CX = |0\rangle\langle0| \otimes \mathbb{1} + |1\rangle\langle1| \otimes \phi_X = \left(\begin{array}{cccc}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 1 \\
+        0 & 0 & 1 & 0 
+    \end{array}\right)
+\end{equation*}
+Vediamo ora \textbf{CSWAP}:
+\begin{equation*}
+    \textbf{CSWAP} = \left(\begin{array}{cccccccc}
+         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 1 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 1 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 1 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 0 & 0 & 1 & 0   \\
+         0 & 0 & 0 & 0 & 0 & 1 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 0 & 0 & 0 & 1   
+    \end{array}\right)
+\end{equation*}
+Questa operazione è meglio conosciuta come \textbf{operazione di Fredkin} (più comunemente Fredkin gate), e funziona nel seguente modo:
+\begin{equation*}
+    \begin{array}{c}
+         \textbf{CSWAP}|0bc\rangle = |0bc\rangle  \\ \\
+         \textbf{CSWAP}|1bc\rangle = |1cb\rangle 
+    \end{array}
+\end{equation*}
+
+Infine, vediamo l'operazione \textbf{controlled-controlled-NOT}, o anche \textbf{CCX}. È comunemente conosciuta come l'operazione di \textbf{Toffoli} (Toffoli gate), e la sua matrice è rappresentata come:
+\begin{equation*}
+    \textbf{CCX} = \left(\begin{array}{cccccccc}
+         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 1 & 0 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 1 & 0 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 1 & 0 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 0 & 1 & 0 & 0   \\
+         0 & 0 & 0 & 0 & 0 & 0 & 0 & 1   \\
+         0 & 0 & 0 & 0 & 0 & 0 & 1 & 0   
+    \end{array}\right)
+\end{equation*}
+\end{itemize} 
+\subsection{Circuiti Quantistici}
+\begin{definition}{Circuito}{}
+    Definiamo come \textbf{circuito} un modello di computazione nella quale l'informazione
+    è trasportata dai 'fili' (wires) attraverso una rete di 'porte' (gates), le quali rappresentano
+    l'operazione applicata all'informazione trasportata.
+\end{definition}

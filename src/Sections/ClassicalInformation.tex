@@ -1,0 +1,65 @@
+\section{Informazione Classica}
+Per comprendere al meglio come funziona l'informazione e la computazone quantistica, è bene avere le idee chiare su come funziona quella classica.
+\subsection{Sistemi Singoli}
+Sia $X$ un sistema fisico che memorizza l'informazione. $X$ può stare in un numero \textbf{finito di stati}. Definiamo anche $\Sigma$ come l'insieme finito degli stati che $X$ può assumere.
+
+\begin{example}{}{}
+    Ad esempio possiamo pensare ad $X$ come un bit, quindi $\Sigma = \{0,1\}$.
+\end{example}
+
+\begin{definition}{Stato Probabilistico}{}
+    Sia $X$ un sistema e $\Sigma$ il suo insieme di stati. Definiamo gli \textbf{stati probabilistici} di $X$ se associamo ad ogni stato una \textbf{probabilità} tale che:
+    \begin{itemize}
+        \item $0 \leq p(\sigma) \leq 1$ per ogni $\sigma \in \Sigma$
+        \item $\sum_{\sigma \in \Sigma} p(\sigma) = 1$
+    \end{itemize}
+\end{definition}
+
+Possiamo rappresentare gli \textbf{stati probabilistici} come vettori, chiamati anche \textbf{vettori probabilistici}.
+\begin{example}{}{}
+    Sia $X$ il sistema che rappresenta un bit. Con probabilità $\frac{3}{4}$ $X$ assume lo stato di $0$, con $\frac{1}{4}$ assume $1$. Allora possiamo rappresentare questo stato attraverso il seguente vettore:
+    \begin{equation*}
+         \left(\begin{array}{c}
+             \frac{3}{4}  \\ \\
+             \frac{1}{4} 
+        \end{array}\right)
+    \end{equation*}
+    dove la prima entrata corrisponde la probabilità che $X$ assuma lo stato $0$, la seconda entrata corrisponde alla probabilità che $X$ assuma lo stato $1$.
+
+\end{example}
+
+È comodo utilizzare la Dirac Notation (Sezione 1.5) per esprimere uno stato probabilistico.
+
+\begin{definition}{Standard Basis Vectors}{}
+    Definiamo come \textbf{Standard Basis Vectors} i vettori che hanno tutte le entrate $0$ eccetto una singola entrata avente $1$. Sono utili per rappresentare gli stati classici.
+\end{definition}
+In particolare, per il nostro sistema binario, gli standard basis vectors sono $|0\rangle$, corrispondente a 
+$\left(\begin{array}{c}
+         1  \\
+         0
+    \end{array}\right)$
+e $|1\rangle$, corrispondente a $\left(\begin{array}{c}
+         0  \\
+         1
+    \end{array}\right)$.
+
+\begin{fact}{}{}
+    Ogni vettore probabilistico può essere espresso unicamente come una \textbf{combinazione lineare} degli standard basis vectors.
+\end{fact}
+\begin{example}{}{}
+    \begin{equation*}
+        \left(\begin{array}{c}
+         \frac{3}{4}  \\ \\
+         \frac{1}{4}
+    \end{array}\right) = \frac{3}{4} |0\rangle +  \frac{1}{4} |1\rangle
+    \end{equation*}
+\end{example}
+\subsubsection{Misurazione di stati probabilistici}
+\subsubsection{Operazioni deterministiche}
+\subsubsection{Operazioni probablistiche}
+\subsubsection{Composizione di operazioni probabilistiche}
+\subsection{Sistemi Multipli}
+\subsubsection{Stati Classici}
+\subsubsection{Stati Probabilistici}
+\subsubsection{Misurazione di stati probabilistici}
+\subsubsection{Operazioni sugli stati probabilistici}

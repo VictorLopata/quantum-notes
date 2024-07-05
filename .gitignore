@@ -1,0 +1,10 @@
+main.toc
+src/main.synctex.gz
+main.out
+main.log
+main.fls
+main.fdb_latexmk
+main.aux
+src/Sections/ClassicalInformation.aux
+src/Sections/Introduzione.aux
+src/Sections/QuantumInformation.aux
