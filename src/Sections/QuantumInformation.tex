@@ -465,9 +465,138 @@ Infine, vediamo l'operazione \textbf{controlled-controlled-NOT}, o anche \textbf
     \end{array}\right)
 \end{equation*}
 \end{itemize} 
+\newpage
 \subsection{Circuiti Quantistici}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 11cm]{./Images/circ2.png}
+    \caption{}
+    \label{fig1}
+\end{figure}
 \begin{definition}{Circuito}{}
     Definiamo come \textbf{circuito} un modello di computazione nella quale l'informazione
     è trasportata dai 'fili' (wires) attraverso una rete di 'porte' (gates), le quali rappresentano
     l'operazione applicata all'informazione trasportata.
 \end{definition}
+Nel modello quantistico, i fili e le porte rappresentano rispettivamente i qubits e le operazioni applicabili su di essi.
+Ad esempio, la figura \ref{fig1} rappresenta l'applicazione delle operazioni $H$, $S$, $H$ e $T$ su un
+singolo qubit. I circuiti quantistici hanno spesso i qubits inizializzati a $|0\rangle$. Se preferiamo,
+è possibile rappresentare alla fine del circuito il nuovo stato a seguito delle trasformazioni, come mostrato
+nella figura \ref{fig2}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 12cm]{./Images/circ3.png}
+    \caption{}
+    \label{fig2}
+\end{figure}
+
+La figura \ref{fig4}, invece, mostra un'operazione su un sistema multiplo, a due qubit. La prima,
+intuitivamente, rappresenta l'operazione di Hadamard; la seconda, invece, è il controlled-NOT, dove il cerchio
+riempito rappresente il qubit di controllo, mentre il $\otimes$ rappresenta il qubit target.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 8cm]{./Images/circ42.png}
+    \caption{}
+    \label{fig4}
+\end{figure}
+
+Notiamo anche che nel modello è implicito l'applicazione dell'operazione identità sul qubit $X$. Sia quindi
+$U$ la matrice unitaria rappresentante le due operazioni. $U$ è definita come:
+\begin{equation*}
+    U = \left(\mathbb{1} \otimes H \right)\left(|0\rangle\langle0| \otimes \mathbb{1} + |1\rangle\langle1| \otimes \phi_X\right) = 
+    \left(\begin{array}{cccc}
+        \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 & 0 \\ \\
+       0 & 0 & \frac{1}{\sqrt{2}} & - \frac{1}{\sqrt{2}} \\ \\
+       0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \\
+        \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0 & 0 
+    \end{array}\right)
+\end{equation*}
+
+Abbiamo che:
+\begin{equation*}
+    \begin{array}{l}
+        U|00\rangle = |\phi^+\rangle \\
+        U|01\rangle = |\phi^-\rangle \\
+        U|10\rangle = |\psi^+\rangle \\
+        U|11\rangle = -|\psi^-\rangle \\
+    \end{array}
+\end{equation*}
+
+I fili con due linee rappresentano i classici bit. Vengono utilizzati dopo aver eseguito una misurazione
+come mostrato nella figura \ref{fig5}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 10cm]{./Images/MES.png}
+    \caption{}
+    \label{fig5}
+\end{figure}
+
+È spesso conveniente rappresentare i fili dei bit dopo la misurazione sullo stesso livello dei fili dei
+qubit, come mostrato nella figura \ref{fig6}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 11cm]{./Images/mis.png}
+    \caption{}
+    \label{fig6}
+\end{figure}
+
+Ecco alcune porte comunemente usate per 1 o più qubit:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 10cm]{./Images/Pauli.png}
+    \caption{}
+    \label{fig7}
+\end{figure}
+
+La figura \ref{fig7} rappresenta le operazioni che si fanno su un singolo qubit, abbiamo
+in ordine: $\sigma_x$, $\sigma_y$, $\sigma_z$, Hadamard e le due Phase Operations.
+
+
+La porta Not possiamo rappresentarla anche come nella figura \ref{fig8}.
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Images/plus.drawio.png}
+        \caption{Not gate}
+        \label{fig8}
+    \end{minipage}
+    \hspace{0.02\textwidth} % Spazio tra le immagini
+    \begin{minipage}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth ]{Images/x.drawio.png}
+        \caption{SWAP gate}
+        \label{fig9}
+    \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 11cm]{./Images/LAST.drawio.png}
+    \caption{}
+    \label{fig10}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 10cm]{./Images/ucontr.png}
+    \caption{}
+    \label{fig11}
+\end{figure}
+
+La figura \ref{fig9} rappresenta la porta SWAP. Infine la figura \ref{fig10} rappresentano le
+porte di controllo, rispettivamente \textbf{controlled-NOT}, \textbf{controlled-controlled-NOT} e \textbf{controlled-SWAP}.
+
+Operazioni arbitrarie sono rappresentate da rettangoli nominati con il nome dell'operazione unitaria.
+La figura \ref{fig11} mostra un esempio. La figura a destra è la versione controllata.
+
+\newpage
+\subsection{Misurazione Proiettiva}
