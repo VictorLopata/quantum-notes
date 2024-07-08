@@ -1,4 +1,4 @@
-\section{Informazione Quantistica}
+\section{Introduzione all'informazione quantistica}
 \subsection{Sistemi Singoli}
 \begin{definition}{Stato Quantistico}{}
     Definiamo come \textbf{stato quantistico} un \textbf{vettore colonna} tale che:
@@ -599,4 +599,197 @@ Operazioni arbitrarie sono rappresentate da rettangoli nominati con il nome dell
 La figura \ref{fig11} mostra un esempio. La figura a destra è la versione controllata.
 
 \newpage
-\subsection{Misurazione Proiettiva}
+\subsection{Limitazioni nell'informazione quantistica}
+\subsubsection{Irrillevanza della fase globale}
+Siano $|\psi\rangle$ e $\phi\rangle$ due vettori unitari che rappresentano due stati 
+quantistici. Assumiamo che esista un numero complesso $\alpha$, con $|\alpha| = 1$, tale che:
+\begin{equation*}
+    |\phi\rangle = \alpha |\psi\rangle
+\end{equation*}
+Allora diciamo che i vettori $|\phi\rangle$ e $|\psi\rangle$ \textbf{differiscono di una fase globale}.
+Diciamo anche che $\alpha$ è la fase globale.
+
+Consideriamo, quindi, un sistema che sta in uno dei due stati, $|\phi\rangle$ o $|\psi\rangle$
+e che differiscono di una fase globale. Analizziamo cosa succede durante la misurazione. Nel caso
+in cui il sistema si trovi nello stato $|\psi\rangle$, abbiamo che la probabilità di misurare
+uno stato classico $a \in \Sigma$ è:
+\begin{equation*}
+    |\langle a|\psi\rangle|^2
+\end{equation*}
+Nel secondo caso, in cui lo stato sia $|\phi\rangle$, la probabilità che la misurazione dia come 
+risultato lo stato $a \in \Sigma$ è:
+\begin{equation*}
+    |\langle a|\phi\rangle|^2 = |\alpha\langle a|\psi\rangle|^2 = |\alpha|^2 |\langle a|\psi\rangle|^2 = |\langle a|\psi\rangle|^2
+\end{equation*}
+perchè $|\alpha|^2 = 1$. Notiamo che la probabilità di misurare uno stato classico $a$ è esattamente lo stesso
+per i due stati.
+
+Consideriamo ora l'applicazione di un'operazione unitaria $U$ su entrambi gli stati. Nel caso
+in cui lo stato iniziale è $|\psi\rangle$, allora dopo l'applicazione il nuovo stato diventa:
+\begin{equation*}
+    U|\psi\rangle
+\end{equation*}
+Nel caso, invece, in cui lo stato iniziale è $|\phi\rangle$, dopo l'applicazione lo stato diventa:
+\begin{equation*}
+    U|\phi\rangle = \alpha U|\psi\rangle
+\end{equation*}
+Notiamo che i due stati risultanti differiscono dalla stessa fase globale $\alpha$.
+
+Concludiamo che, i due stati che differiscono da una fase globale sono completamente indistinguibili.
+Per questo, $|\phi\rangle$ e $|\psi\rangle$ sono considerati \textbf{equivalenti}, e sono visti effettivamente
+come lo stesso stato.
+\begin{example}{}{}
+    Ad esempio $|-\rangle$ e $-|-\rangle$ differiscono per la fase globale $-1$, quindi possono
+    essere considerati lo stesso stato.
+\end{example}
+\subsubsection{Teorema no-cloning}
+\begin{theorem}{No-cloning}{}
+    Siano $X$ ed $Y$ due sistemi che condividono lo stesso insieme di stati classici $\Sigma$
+    (avente almeno 2 elementi). Allora, possiamo affermare che \textbf{non} esiste uno stato 
+    quanistico $|\phi\rangle$ di $Y$ e un'operazione unitaria $U$ sul sistema composto $(X,Y)$
+    tale che
+    \begin{equation*}
+        U(|\psi\rangle \otimes |\phi\rangle) = |\psi\rangle \otimes |\psi\rangle \quad \forall |\psi\rangle \in X
+    \end{equation*}    
+\end{theorem}
+\begin{proof}
+    $\Sigma$ deve contenere almeno due elementi. Scegliamo, quindi, $a,b \in \Sigma$, con $a \not = b$.
+    Supponiamo \textbf{per assurdo} che esista uno stato quantistico $|\phi\rangle$ e un'operazione unitaria $U$ sul sistema composto $(X,Y)$
+    tale che
+    \begin{equation*}
+        U(|\psi\rangle \otimes |\phi\rangle) = |\psi\rangle \otimes |\psi\rangle \quad \forall |\psi\rangle \in X
+    \end{equation*}
+    Nel nostro caso:
+    \begin{equation*}
+        U(|a\rangle \otimes |\phi\rangle) = |a\rangle \otimes |a\rangle \wedge U(|b\rangle \otimes |\phi\rangle) = |b\rangle \otimes |b\rangle
+    \end{equation*}
+    Consideriamo il caso in cui $|\psi\rangle = \frac{1}{\sqrt{2}}|a\rangle + \frac{1}{\sqrt{2}}|b\rangle$.
+    Sfruttando la caratteristica della linearità del prodotto tensoriale nel primo argomento ed
+    la linearità del prodotto matrice-vettore nel secondo argomento, abbiamo che:
+    \begin{equation*}
+        \large
+        \begin{array}{c}
+            U\left(\left(\frac{1}{\sqrt{2}}|a\rangle + \frac{1}{\sqrt{2}}|b\rangle\right) \otimes |\phi\rangle \right) \\ \\
+            = U\left(\frac{1}{\sqrt{2}}|a\rangle \otimes |\phi\rangle + \frac{1}{\sqrt{2}}|b\rangle \otimes |\phi\rangle\right) \\ \\
+            = \frac{1}{\sqrt{2}}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt{2}}|b\rangle \otimes |b\rangle
+        \end{array}
+    \end{equation*}
+    Svolgendo i conti senza sfruttare la linearità degli argomenti, notiamo che:
+    \begin{equation*}
+        \begin{array}{c}
+            U\left(\left(\frac{1}{\sqrt{2}}|a\rangle + \frac{1}{\sqrt{2}}|b\rangle\right) \otimes |\phi\rangle \right) \\ \\
+            = \left(\frac{1}{\sqrt{2}}|a\rangle + \frac{1}{\sqrt{2}}|b\rangle\right) \otimes \left(\frac{1}{\sqrt{2}}|a\rangle + \frac{1}{\sqrt{2}}|b\rangle\right) \not = \frac{1}{\sqrt{2}}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt{2}}|b\rangle \otimes |b\rangle
+        \end{array}
+    \end{equation*}
+\end{proof}
+\begin{oss}{}{}
+    La \textbf{clonazione perfetta} non esiste, ma è possibile clonare con una percentuale di accuratezza
+    limitata.
+\end{oss}
+\begin{oss}{}{}
+    È possibile clonare perfettamente stati appartenenti a una base standard, come gli stati classici dei qubits.
+\end{oss}
+
+Costruiamo un circuito in grado di clonare uno stato classico del qubit, utilizzando l'operazione del
+\textbf{control-not}:
+\begin{figure}[h]
+        \centering
+        \includegraphics[width = 4cm]{./Images/example.png}
+        \caption{}
+\end{figure}
+
+\subsection{Teletrasporto Quantistico}
+\begin{definition}{Teletrasporto Quantistico}{}
+    Definiamo come \textbf{teletrasporto quantistico} il protocollo tale che la sua funzione è il trasporto
+    di informazione sfruttando gli e-bit (stati quantistici entangled).
+\end{definition}
+Siano, quindi, Alice (mittente) e Bob (destinatario) due entità che vogliono scambiarsi un qubit. Assumiamo
+che entrambe le entità condividano un e-bit: Alice conserva il qubit \textbf{A} e Bob il qubit \textbf{B} e la
+loro unione formano lo stato \textbf{entangled} $|\phi^+\rangle = \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$.
+Alice vuole 'spedire' il qubit \textbf{Q}, ovvero far in modo che Bob abbia un qubit avente lo stesso stato. 
+Bob ed Alice non conoscono alcuna informazione riguardo allo stato Q. Non vi sono
+assunzioni riguardo a quest'ultimo, quindi potrebbe essere anche uno stato entangled con un altro stato.
+
+La figura \ref{fig12} mostra il circuito che descrive il funzionamento del protocollo.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 12.1cm]{./Images/telepng.png}
+    \caption{}
+    \label{fig12}
+\end{figure}
+\begin{oss}{}{}
+    Notiamo che il qubit Q che Alice vuole trasmettere a Bob viene distrutto, richiamando
+    quindi il teorema no-cloning. Questo è il costo del teletrasporto quantistico.
+\end{oss}
+
+Andiamo ora ad analizzare il funzionamento del circuito. Sia Q nello stato generico 
+\begin{equation*}
+    \alpha |0\rangle + \beta |1\rangle
+\end{equation*}
+Sia (B,A,Q) il sistema che dello stato del circuito. Lo stato iniziale di tale sistema è:
+\begin{equation*}
+    |\phi^+\rangle \otimes \left(\alpha |0\rangle + \beta |1\rangle\right) = \frac{1}{\sqrt{2}} \left(\alpha|000\rangle + \alpha|110\rangle + \beta|001\rangle + \beta|111\rangle\right)
+\end{equation*}
+Lo stato dopo aver applicato l'operazione controlled-not diventa:
+\begin{equation*}
+    \frac{1}{\sqrt{2}} \left(\alpha|000\rangle + \alpha|110\rangle + \beta|011\rangle + \beta|101\rangle\right)
+\end{equation*}
+Applichiamo ora l'operazione di Hadamard, trasformando lo stato in:
+\begin{equation*}
+    \begin{array}{c}
+        \frac{1}{\sqrt{2}} \left(\alpha|00\rangle|+\rangle + \alpha|11\rangle|+\rangle + \beta|01\rangle|-\rangle + \beta|10\rangle|-\rangle\right) \\ \\ 
+        = \frac{1}{2} \left(\alpha|000\rangle + \alpha|001\rangle + \alpha|110\rangle +  \alpha|111\rangle + \beta|010\rangle - \beta|011\rangle + \beta|100\rangle - \beta|101\rangle\right) \\ \\
+        = \frac{1}{2}\left(\alpha |0\rangle + \beta |1\rangle\right)|00\rangle + \frac{1}{2}\left(\alpha |0\rangle - \beta |1\rangle\right)|01\rangle + \frac{1}{2}\left(\alpha |1\rangle + \beta |0\rangle\right)|10\rangle + \frac{1}{2}\left(\alpha |1\rangle - \beta |0\rangle\right)|11\rangle 
+    \end{array}
+\end{equation*}
+Analizziamo i possibili casi di misurazione:
+\begin{itemize}
+    \item La probabilità di misurare $A = 0$ e $Q = 0$ è di
+            \begin{equation*}
+                \Vert \frac{1}{2}\left(\alpha |0\rangle + \beta |1\rangle\right)|00\rangle \Vert^2 = \frac{1}{4}\left(|\alpha|^2 + |\beta|^2\right) = \frac{1}{4}
+            \end{equation*}
+        e lo stato $(B,A,Q)$ diventa:
+        \begin{equation*}
+            \left(\alpha |0\rangle + \beta |1\rangle\right)|00\rangle
+        \end{equation*}
+        In questo caso, Bob non deve applicare alcuna operazione.
+    \item La probabilità di misurare $A = 0$ e $Q = 1$ è di
+    \begin{equation*}
+        \Vert \frac{1}{2}\left(\alpha |0\rangle - \beta |1\rangle\right)|01\rangle \Vert^2 = \frac{1}{4}\left(|\alpha|^2 - |\beta|^2\right) = \frac{1}{4}
+    \end{equation*}
+    e lo stato $(B,A,Q)$ diventa:
+    \begin{equation*}
+        \left(\alpha |0\rangle - \beta |1\rangle\right)|01\rangle
+    \end{equation*}
+    In questo caso, Bob deve applicare l'operazione $Z$ al suo qubit $B$, ovvero:
+    \begin{equation*}
+        \left(\alpha |0\rangle + \beta |1\rangle\right)|01\rangle
+    \end{equation*}
+    \item La probabilità di misurare $A = 1$ e $Q = 0$ è di
+        \begin{equation*}
+            \Vert \frac{1}{2}\left(\alpha |1\rangle + \beta |0\rangle\right)|10\rangle \Vert^2 = \frac{1}{4}\left(|\alpha|^2 + |\beta|^2\right) = \frac{1}{4}
+        \end{equation*}
+        e lo stato $(B,A,Q)$ diventa:
+        \begin{equation*}
+            \left(\alpha |1\rangle + \beta |0\rangle\right)|10\rangle
+        \end{equation*}
+        In questo caso, Bob deve applicare l'operazione $X$ al suo qubit $B$, ovvero:
+        \begin{equation*}
+            \left(\alpha |0\rangle + \beta |1\rangle\right)|10\rangle
+        \end{equation*}
+    \item La probabilità di misurare $A = 1$ e $Q = 1$ è di
+    \begin{equation*}
+        \Vert \frac{1}{2}\left(\alpha |1\rangle - \beta |0\rangle\right)|11\rangle \Vert^2 = \frac{1}{4}\left(|\alpha|^2 + |\beta|^2\right) = \frac{1}{4}
+    \end{equation*}
+    e lo stato $(B,A,Q)$ diventa:
+    \begin{equation*}
+        \left(\alpha |1\rangle - \beta |0\rangle\right)|11\rangle
+    \end{equation*}
+    In questo caso, Bob deve applicare l'operazione $X$ e $Z$ al suo qubit $B$, ovvero:
+    \begin{equation*}
+        \left(\alpha |0\rangle + \beta |1\rangle\right)|11\rangle
+    \end{equation*}
+\end{itemize}
+Osserviamo che in tutti i casi, lo stato di $B$ è uguale a $\alpha |0\rangle + \beta |1\rangle$, ovvero
+lo stato iniziale di $Q$; abbiamo, quindi, teletrasportato l'informazione del qubit $Q$ da Alice
+a Bob.
