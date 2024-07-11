@@ -96,3 +96,123 @@ valore $x$. Non ci è tanto utile, quindi è necessaria l'abilità di estrazione
 su più di un valore di $f(x)$ dalla superposizione per poter sfruttare questo parallelismo.
 
 \subsection{Algoritmo di Deutsch}
+L'algoritmo di Deutsch, proposto da David Deutsch, è il primo algoritmo quantistico che dimostra 
+quanto i circuiti quantistici performino meglio dei circuiti classici.
+
+Sia $f: \{0,1\} \rightarrow \{0,1\}$. Come abbiamo visto in precedenza, esistono 4 tipi di funzioni di questo tipo:
+\begin{equation*}
+    \begin{array}{c|c}
+        a & f_1(a) \\
+        \hline
+        0 & 0 \\
+        0 & 0
+    \end{array}
+    \quad
+    \begin{array}{c|c}
+        a & f_2(a) \\
+        \hline
+        0 & 0 \\
+        0 & 1
+    \end{array}
+    \quad
+    \begin{array}{c|c}
+        a & f_3(a) \\
+        \hline
+        0 & 1 \\
+        0 & 0
+    \end{array}
+    \quad
+    \begin{array}{c|c}
+        a & f_4(a) \\
+        \hline
+        0 & 1 \\
+        0 & 1
+    \end{array}
+\end{equation*}
+che rappresentano rispettivamente la costante 0, la funzione identità, la funzione di negazione e la costante 1.
+Definiamo la prima e l'ultima funzione come \textbf{costanti}, e la seconda e terza funzione come \textbf{bilanciate}.
+
+\begin{definition}{Problema di Deutsch}{}
+    Data in input una funzione $f: \{0,1\} \rightarrow \{0,1\}$, definiamo come \textbf{problema di Deutsch} il
+    determinare se tale funzione è \textbf{costante} o \textbf{bilanciata}. 
+\end{definition}
+L'output di tale algoritmo ci darà $0$ se $f$ è costante, $1$ se $f$ è bilanciata. Associamo, per ogni funzione, la stringa
+$f(0)f(1)$:
+\begin{equation*}
+    \begin{array}{c|c}
+        \textbf{funzione} & \textbf{stringa} \\
+        \hline
+        f_1 & 00 \\
+        f_2 & 01 \\
+        f_3 & 10 \\
+        f_4 & 11 
+    \end{array}
+\end{equation*}
+Osserviamo che tale associazione funzione-stringa formi uno \textbf{XOR} nel nostro algoritmo.
+
+Un qualsiasi algoritmo classico, richiede la valutazione di $f$ almeno per 2 volte, una per $f(0)$ e l'altra per 
+$f(1)$. Nel mondo quantistico, riusciamo ad ottenere il risultato corretto con una sola valutazione di $f$.
+
+\subsubsection{Implementazione}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 10cm]{./Images/deutch.png}
+    \caption{}
+    \label{fig15}
+\end{figure}
+
+La Figura \ref{fig15} mostra l'implementazione del circuito dell'algoritmo. Come prima, utilizziamo
+la porta di Hadamard per preparare il primo qubit nella superposizione $|+\rangle$; questa volta prepariamo
+anche il secondo qubit nella superposizione $|-\rangle$. Quindi avremo che:
+\begin{equation*}
+    |\pi_1\rangle = |+\rangle|-\rangle =  \left[\frac{|0\rangle + |1\rangle}{\sqrt{2}}\right]\left[\frac{|0\rangle - |1\rangle}{\sqrt{2}}\right]
+    = \frac{1}{2}\left(|0\rangle - |1\rangle\right)|0\rangle + \frac{1}{2}\left(|0\rangle - |1\rangle\right)|1\rangle
+\end{equation*}
+Il prossimo passo è l'esecuzione di $U_f$, che trasforma lo stato in
+\begin{equation*}
+    |\pi_2\rangle = \frac{1}{2}\left(|0 \oplus f(0)\rangle - |1 \oplus f(0)\rangle \right)|0\rangle + \frac{1}{2}\left(|0 \oplus f(1)\rangle - |1 \oplus f(1)\rangle \right)|1\rangle
+\end{equation*}
+Sapendo che:
+\begin{equation*}
+    |0 \oplus a\rangle - |1 \oplus a\rangle = (-1)^a(|0\rangle - |1\rangle)
+\end{equation*}
+quindi che:
+\begin{equation*}
+    \begin{array}{c}
+        |0 \oplus 0\rangle - |1 \oplus 0\rangle = (-1)^0(|0\rangle - |1\rangle) \\ \\
+        |0 \oplus 1\rangle - |1 \oplus 1\rangle = (-1)^1(|0\rangle - |1\rangle)
+
+    \end{array}
+\end{equation*}
+allora possiamo scrivere lo stato $\pi_2\rangle$ come:
+\begin{equation*}
+    \begin{array}{l}
+        |\pi_2\rangle = \frac{1}{2}(-1)^{f(0)}(|0\rangle - |1\rangle)|0\rangle + \frac{1}{2}(-1)^{f(1)}(|0\rangle - |1\rangle)|1\rangle \\ \\
+        = |-\rangle \left(\frac{(-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle}{\sqrt{2}}\right)
+    \end{array}
+\end{equation*}
+Osserviamo che il qubit più a sinistra è rimasto lo stesso $(|-\rangle)$, mentre il qubit a sinistra
+è cambiato dopo l'esecuzione di $U_f$. Questo fenomeno è chiamato \textbf{kickback}.
+
+Un'ultima semplificazione ci porta ad:
+\begin{equation*}
+    \begin{array}{c}
+        |\pi_2\rangle = (-1)^{f(0)}|-\rangle\left(\frac{|0\rangle + (-1)^{f(0)\oplus f(1)} |1\rangle}{\sqrt{2}}\right) = \\ \\
+        = \left\{ \begin{array}{rcl}
+            (-1)^{f(0)}|-\rangle|+\rangle & \text{se} & f(0) \oplus f(1) = 0 \\
+            (-1)^{f(0)}|-\rangle|-\rangle & \text{se} & f(0) \oplus f(1) = 1
+        \end{array}\right.
+    \end{array}
+\end{equation*}
+
+L'ultimo passaggio è quello di applicare la porta di Hadamard sul qubit di destra, trasformando lo stato in:
+\begin{equation*}
+    |\pi_3\rangle = \left\{ \begin{array}{rcl}
+        (-1)^{f(0)}|-\rangle|0\rangle & \text{se} & f(0) \oplus f(1) = 0 \\
+        (-1)^{f(0)}|-\rangle|1\rangle & \text{se} & f(0) \oplus f(1) = 1
+    \end{array}\right.
+\end{equation*}
+quindi avendo la certezza con probabilità $1$ che la misurazione del qubit a destra ci dia il risultato
+corrispondente a $0$ se $f$ è costante, altrimenti $0$ se $f$ è bilanciata. Tutto questo è stato
+fatto con una sola valutazione di $f$, dimostrando il grande vantaggio della computazione quantistica
+rispetto a quella classica.
