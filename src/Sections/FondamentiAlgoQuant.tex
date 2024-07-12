@@ -216,3 +216,37 @@ quindi avendo la certezza con probabilità $1$ che la misurazione del qubit a de
 corrispondente a $0$ se $f$ è costante, altrimenti $0$ se $f$ è bilanciata. Tutto questo è stato
 fatto con una sola valutazione di $f$, dimostrando il grande vantaggio della computazione quantistica
 rispetto a quella classica.
+
+\subsection{Algoritmo di Deutsch-Jozsa}
+L'algoritmo di Deutsch-Jozsa, proposto da David Deutsch e Richard Jozsa, è uno dei primi esempi di algoritmi
+quantistici ad essere esponenzialmente più veloce di un qualsiasi algoritmo deterministico classico. Questo 
+algoritmo è un caso più generale del problema di Deutsch.
+
+Sia $f : \{0, 1\}^n \rightarrow \{0, 1\}$ per una $n \in \mathbb{N}$. Diciamo che $f$ è:
+\begin{itemize}
+    \item \textbf{Costante} se $\forall x \in \{0,1\}^n \quad f(x)=0 \bigvee f(x)=1$,
+    \item \textbf{Bilanciata} se $\sum_{x \in \{0,1\}^n} f(x) = \frac{2^n}{2} = 2^{n-1}$
+\end{itemize}
+\begin{definition}{Problema di Deutsch-Jozsa}{}
+    Data in input una funzione $f : \{0, 1\}^n \rightarrow \{0, 1\}$, definiamo come \textbf{prob-
+    lema di Deutsch-Jozsa} il determinare se tale funzione è costante o bilanciata.
+\end{definition}
+\begin{oss}{}{}
+    La maggior parte delle funzioni booleane non sono ne costanti e ne bilanciate. Tali funzioni
+    vengono ignorate, considerate come \textit{don't care} input.
+\end{oss}
+In parole povere, possiamo descrivere l'algoritmo nella seguente maniera: se ognuna delle $n$ misurazioni
+produce $0$, allora la funzione è costante; altrimenti, se almeno una misurazione produce $1$, allora la funzione
+è bilanciata. In altre parole, stiamo eseguendo un OR sulle $n$ misurazioni.
+
+Nel caso classico, per scoprire il tipo di funzione, dovremmo valutare la funzione per almeno $\frac{2^n}{2} + 1$
+volte; nel caso quantistico, invece, riusciamo a determinare il tipo di funzione con una sola valutazione di $f$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 10cm]{./Images/dh.jpeg}
+    \caption{}
+    \label{fig16}
+\end{figure}
+
+La figura \ref{fig16} mostra il circuito quantistico che implementa l'algoritmo di Deutsch-Jozsa.
