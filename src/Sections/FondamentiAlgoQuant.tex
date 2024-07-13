@@ -235,7 +235,7 @@ Sia $f : \{0, 1\}^n \rightarrow \{0, 1\}$ per una $n \in \mathbb{N}$. Diciamo ch
     La maggior parte delle funzioni booleane non sono ne costanti e ne bilanciate. Tali funzioni
     vengono ignorate, considerate come \textit{don't care} input.
 \end{oss}
-In parole povere, possiamo descrivere l'algoritmo nella seguente maniera: se ognuna delle $n$ misurazioni
+In parole povere, possiamo descrivere l'algoritmo nella seguente maniera: attraverso una singola query, se ognuna delle $n$ misurazioni
 produce $0$, allora la funzione è costante; altrimenti, se almeno una misurazione produce $1$, allora la funzione
 è bilanciata. In altre parole, stiamo eseguendo un OR sulle $n$ misurazioni.
 
@@ -250,3 +250,35 @@ volte; nel caso quantistico, invece, riusciamo a determinare il tipo di funzione
 \end{figure}
 
 La figura \ref{fig16} mostra il circuito quantistico che implementa l'algoritmo di Deutsch-Jozsa.
+
+Analizziamo, inizialmente, il comportamento della porta di Hadamard:
+\begin{equation*}
+    H|a\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{1}{\sqrt{2}}(-1)^a|1\rangle = \frac{1}{\sqrt{2}} \sum_{b \in \{0,1\}} (-1)^{ab}|b\rangle
+\end{equation*}
+Supponiamo ora do avere $n$ qubits eseguendo la trasformazione di Hadamard su ognuna di esse:
+\begin{equation*}
+\large
+        \begin{array}{l}
+            H^{\otimes n}|x_{n-1}\hdots x_2 x_1\rangle = \\ \\
+            = \left(H|x_{n-1}\rangle\right) \otimes \hdots \otimes \left(H|x_{0}\rangle\right) = \\ \\
+            = \left(\frac{1}{\sqrt{2}} \sum_{b_{n-1} \in \{0,1\}} (-1)^{x_{n-1}b_{n-1}}|b_{n-1}\rangle\right) \otimes \hdots \otimes \left(\frac{1}{\sqrt{2}} \sum_{_0 \in \{0,1\}} (-1)^{x_{0}b_0}|b_0\rangle\right) = \\ \\
+            = \frac{1}{\sqrt{2^n}} \sum_{b_{n-1} \hdots b_0 \in \{0,1\}^n} (-1)^{x_{n-1}b_{n-1} + \hdots + x_{0}b_{0}} |b_{n-1}\hdots b_2 b_1\rangle
+        \end{array}
+\end{equation*}
+
+Di conseguenza, abbiamo che:
+\begin{equation*}
+    |\psi_1\rangle = (H|1\rangle)(H^{\otimes n}|0 \hdots 0\rangle) = |-\rangle \otimes \frac{1}{\sqrt{2^n}}\sum_{b_{n-1} \hdots b_0 \in \{0,1\}^n} |b_{n-1} \hdots b_0\rangle
+\end{equation*}
+
+Eseguendo $U_f$ sullo stato, otteniamo il seguente nuovo stato:
+\begin{equation*}
+    |\psi_2\rangle = |-\rangle \otimes \frac{1}{\sqrt{2^n}}\sum_{b_{n-1}\hdots b_0 \in \{0,1\}^n} (-1)^{f(b_{n-1} \hdots b_0)}|b_{n-1} \hdots b_0\rangle.
+\end{equation*}
+Abbiamo utilizzato lo stesso fenomeno di \textit{kick-back} visto nell'algoritmo
+di Deutsch.
+
+Infine applichiamo un secondo strato di porte di Hadamard, trasformando lo stato in:
+\begin{equation*}
+    |-\rangle \otimes \frac{1}{2^n} \sum_{b_{n-1}\hdots b_0 \in \{0,1\}^n} \sum_{c_{n-1}\hdots c_0 \in \{0,1\}^n} (-1)^{f(b_{n-1} \hdots b_0) + b_{n-1}c_{n-1} + \hdots + b_0c_0}|c_n-1 \hdots c_0\rangle
+\end{equation*}
