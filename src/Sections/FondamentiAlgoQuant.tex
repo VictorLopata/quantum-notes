@@ -280,5 +280,25 @@ di Deutsch.
 
 Infine applichiamo un secondo strato di porte di Hadamard, trasformando lo stato in:
 \begin{equation*}
-    |-\rangle \otimes \frac{1}{2^n} \sum_{b_{n-1}\hdots b_0 \in \{0,1\}^n} \sum_{c_{n-1}\hdots c_0 \in \{0,1\}^n} (-1)^{f(b_{n-1} \hdots b_0) + b_{n-1}c_{n-1} + \hdots + b_0c_0}|c_n-1 \hdots c_0\rangle
+   |\psi_3\rangle = |-\rangle \otimes \frac{1}{2^n} \sum_{b_{n-1}\hdots b_0 \in \{0,1\}^n} \sum_{c_{n-1}\hdots c_0 \in \{0,1\}^n} (-1)^{f(b_{n-1} \hdots b_0) + b_{n-1}c_{n-1} + \hdots + b_0c_0}|c_{n-1} \hdots c_0\rangle
 \end{equation*}
+A questo punto, dobbiamo semplicemente calcolare la probabilità che lo stato più a destra
+sia esattamente uguale a $|0 \hdots 0\rangle$; infatti:
+\begin{equation*}
+    p(0^n) = \vert \frac{1}{2^n} \sum_{b_{n-1} \hdots b_0 \in \{0,1\}^n} (-1)^{f(b_{n-1} \hdots b_0)} \vert =
+    \left\{ \begin{array}{l l}
+        1 & \text{se f è }\textbf{costante} \\
+        0 & \text{se f è }\textbf{bilanciata}  
+    \end{array}\right.
+\end{equation*}
+\begin{oss}{}{}
+    Osserviamo che:
+    \begin{itemize}
+        \item Se $f$ è \textbf{costante}, allora:
+            \begin{itemize}
+                \item Se $f(b_{n-1} \hdots b_0) = 0$ per una qualsiasi stringa $b_{n-1} \hdots b_0 \in \{0,1\}^n$, abbiamo che la somma è $2^n$, quindi $p(0^n) = 1$.
+                \item Altrimenti, se $f(b_{n-1} \hdots b_0) = 1$, la somma è $-2^n$, quindi $p(0^n) = 1$.
+            \end{itemize}
+        \item Se $f$ è \textbf{bilanciata}, allora metà delle valutazioni di $f$ sono uguali ad $1$, l'altra metà sono uguali a $0$. Avremo quindi una sommatoria con numero uguali di $+1$ e $-1$, annullandosi a vicenda, facendo risultare $p(0^n) = 0$.
+    \end{itemize}
+\end{oss}
